@@ -3,7 +3,6 @@ package com.example.animalsapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalsapp.data.Animal
@@ -28,7 +27,8 @@ class MainActivity : AppCompatActivity() {
                 recyclerview.adapter = adapter
             }
 
-            override fun onFailure(call: Call<List<Animal>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Animal>>?, t: Throwable?) {
+
             }
 
             override fun onItemClick(_id: String) {

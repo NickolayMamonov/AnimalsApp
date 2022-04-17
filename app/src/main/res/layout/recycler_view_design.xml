@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Item:"
+            android:text="@string/fact_about"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -27,8 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="Item"
+            android:text="@string/item"
             android:textSize="20sp"
             android:textStyle="bold" />
 
