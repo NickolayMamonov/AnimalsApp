@@ -1,7 +1,7 @@
 package com.example.animalsapp
 
-import com.example.animalsapp.data.Animal
-import com.example.animalsapp.data.AnimalDetails
+import com.example.animalsapp.models.animal.Animal
+import com.example.animalsapp.models.animaldetails.AnimalDetails
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,8 +14,8 @@ interface ApiInterface {
     @GET("facts/random")
     fun getAnimals(@Query ("animal_type") animal_type : String,
                    @Query ("amount") amount : Int) : Call<List<Animal>>
-    @GET("facts/{_id}")
-    fun getFactsDetails(@Path("_id") _id : String): Call<AnimalDetails>
+    @GET("facts/{id}")
+    fun getFactsDetails(@Path("id") id : String): Call<AnimalDetails>
 
     companion object {
 

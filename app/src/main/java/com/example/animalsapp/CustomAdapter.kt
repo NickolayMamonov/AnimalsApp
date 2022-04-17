@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.animalsapp.data.Animal
+import com.example.animalsapp.models.animal.Animal
 
-class CustomAdapter(private val mList: List<Animal>?,
-                    val mItemClickListener: ItemClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<Animal>,
+                    private val mItemClickListener: ItemClickListener
+                    ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     interface ItemClickListener{
         fun onItemClick(_id: String)
@@ -23,21 +24,24 @@ class CustomAdapter(private val mList: List<Animal>?,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val animal = mList?.get(position)
-        holder.textView.text = animal?.type
+        val animal = mList[position]
+        holder.textView.text = animal.type
+        holder.itemView.setOnClickListener {
+            mList[position]._id.let { _id -> mItemClickListener.onItemClick(_id) }
+        }
 
     }
 
     override fun getItemCount(): Int {
-        return mList!!.size
+        return mList.size
     }
 
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
-        init {
-            ItemView.setOnClickListener {
-                mList?.get(position)?._id?.let { it -> mItemClickListener.onItemClick(it) }
-            }
-        }
+//        init {
+//            ItemView.setOnClickListener {
+//                mList?.get(position)?._id?.let { it -> mItemClickListener.onItemClick(it) }
+//            }
+//        }
     }
 }

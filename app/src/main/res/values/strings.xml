@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">AnimalsApp</string>
-    <string name="fact_about">Fact about:</string>
+    <string name="fact_about">Fact about :</string>
     <string name="item">Item</string>
     <string name="string_upd">Обновлено :</string>
     <string name="string_crt">Создано :</string>
     <string name="fact_str">Факт :</string>
+    <string name="details">Details</string>
 
 </resources>

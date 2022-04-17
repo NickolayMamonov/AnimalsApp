@@ -1,4 +1,4 @@
-package com.example.animalsapp.data
+package com.example.animalsapp.models.animaldetails
 
 data class Name(
     val first: String,

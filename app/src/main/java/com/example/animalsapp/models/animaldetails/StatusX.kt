@@ -1,4 +1,4 @@
-package com.example.animalsapp.data
+package com.example.animalsapp.models.animaldetails
 
 data class StatusX(
     val sentCount: Int,
