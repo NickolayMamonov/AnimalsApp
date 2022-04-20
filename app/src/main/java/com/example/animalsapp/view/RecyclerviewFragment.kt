@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.animalsapp.CustomAdapter
 import com.example.animalsapp.R
 
 class RecyclerviewFragment : Fragment() {
@@ -20,13 +24,28 @@ class RecyclerviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.recyclerview_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        val root = inflater.inflate(R.layout.recyclerview_fragment, container, false)
         viewModel = ViewModelProvider(this).get(RecyclerviewViewModel::class.java)
-
+        viewModel.getData().observe(viewLifecycleOwner) { animals ->
+            val adapter = CustomAdapter(animals) {
+                val ft = requireActivity().supportFragmentManager.beginTransaction()
+                ft.replace(R.id.fragment_container, DetailsFragment())
+                ft.addToBackStack(null)
+                ft.commit()
+            }
+            val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = adapter
+        }
+        return root
     }
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        viewModel = ViewModelProvider(this).get(RecyclerviewViewModel::class.java)
+//
+//    }
 
 }
+
+

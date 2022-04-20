@@ -1,20 +1,18 @@
 package com.example.animalsapp.view
 
-import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.animalsapp.ApiInterface
-import com.example.animalsapp.CustomAdapter
 import com.example.animalsapp.models.animal.Animal
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RecyclerviewViewModel : ViewModel() {
-    var data: MutableLiveData<String>? = null
+class DetailsViewModel : ViewModel() {
+    var details: MutableLiveData<String>? = null
 
-    fun getData(): LiveData<List<Animal>> {
+    fun getDetails(): LiveData<List<Animal>> {
         val mutableLiveData = MutableLiveData<List<Animal>>()
         val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",100)
         apiInterface.enqueue( object : Callback<List<Animal>> {
@@ -31,5 +29,4 @@ class RecyclerviewViewModel : ViewModel() {
         })
         return mutableLiveData
     }
-
 }

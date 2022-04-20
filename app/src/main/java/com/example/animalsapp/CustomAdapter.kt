@@ -8,12 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.animalsapp.models.animal.Animal
 
 class CustomAdapter(private val mList: List<Animal>,
-                    private val mItemClickListener: ItemClickListener
+                    private val mItemClickListener: (String) -> Unit
                     ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    interface ItemClickListener{
-        fun onItemClick(_id: String)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -27,7 +24,7 @@ class CustomAdapter(private val mList: List<Animal>,
         val animal = mList[position]
         holder.textView.text = animal.type
         holder.itemView.setOnClickListener {
-            mList[position]._id.let { _id -> mItemClickListener.onItemClick(_id) }
+            mList[position]._id.let { _id -> mItemClickListener(_id) }
         }
 
     }
@@ -38,10 +35,6 @@ class CustomAdapter(private val mList: List<Animal>,
 
     inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
-//        init {
-//            ItemView.setOnClickListener {
-//                mList?.get(position)?._id?.let { it -> mItemClickListener.onItemClick(it) }
-//            }
-//        }
+
     }
 }

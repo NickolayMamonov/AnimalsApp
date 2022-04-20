@@ -18,7 +18,7 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
+      //  setContentView(R.layout.activity_details)
         val id = intent.getStringExtra("_id")
         facts = findViewById(R.id.fact)
         createAt = findViewById(R.id.time_create)
