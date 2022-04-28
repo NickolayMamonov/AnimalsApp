@@ -1,12 +1,11 @@
 package com.example.animalsapp.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalsapp.CustomAdapter
@@ -36,7 +35,12 @@ class RecyclerviewFragment : Fragment() {
             val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = adapter
+            val fragment = Fragment()
+            val bundle = Bundle()
+            bundle.putInt("id", id)
+            fragment.arguments = bundle
         }
+
         return root
     }
 

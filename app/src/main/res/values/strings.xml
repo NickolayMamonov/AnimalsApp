@@ -6,7 +6,6 @@
     <string name="string_crt">Создано :</string>
     <string name="fact_str">Факт :</string>
     <string name="details">Details</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

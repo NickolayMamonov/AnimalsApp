@@ -12,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RecyclerviewViewModel : ViewModel() {
-    var data: MutableLiveData<String>? = null
+//    var data: MutableLiveData<String>? = null
 
     fun getData(): LiveData<List<Animal>> {
         val mutableLiveData = MutableLiveData<List<Animal>>()
