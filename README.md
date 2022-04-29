@@ -1,0 +1,2 @@
+# AnimalsApp
+Pet-проект AndroidApp
