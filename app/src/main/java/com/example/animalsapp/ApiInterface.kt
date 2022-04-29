@@ -19,7 +19,7 @@ interface ApiInterface {
 
     companion object {
 
-        var BASE_URL = "https://cat-fact.herokuapp.com/"
+        private var BASE_URL = "https://cat-fact.herokuapp.com/"
 
         fun create() : ApiInterface {
 

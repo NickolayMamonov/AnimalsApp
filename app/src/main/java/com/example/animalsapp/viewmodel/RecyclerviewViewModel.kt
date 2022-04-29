@@ -1,4 +1,4 @@
-package com.example.animalsapp.view
+package com.example.animalsapp.viewmodel
 
 import android.content.Intent
 import androidx.lifecycle.LiveData
@@ -18,13 +18,11 @@ class RecyclerviewViewModel : ViewModel() {
         val mutableLiveData = MutableLiveData<List<Animal>>()
         val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",25)
         apiInterface.enqueue( object : Callback<List<Animal>> {
-            override fun onResponse(call: Call<List<Animal>>?, response: Response<List<Animal>>?) {
-                if (response != null) {
-                    mutableLiveData.postValue(response.body())
-                }
+            override fun onResponse(call: Call<List<Animal>>, response: Response<List<Animal>>) {
+                mutableLiveData.postValue(response.body())
             }
 
-            override fun onFailure(call: Call<List<Animal>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Animal>>, t: Throwable) {
 
             }
 

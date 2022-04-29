@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalsapp.CustomAdapter
 import com.example.animalsapp.R
+import com.example.animalsapp.viewmodel.RecyclerviewViewModel
 
 class RecyclerviewFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RecyclerviewFragment()
-    }
+//    companion object {
+//        fun newInstance() = RecyclerviewFragment()
+//    }
 
     private lateinit var viewModel: RecyclerviewViewModel
 
@@ -24,7 +25,7 @@ class RecyclerviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.recyclerview_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(RecyclerviewViewModel::class.java)
+        viewModel = ViewModelProvider(this)[RecyclerviewViewModel::class.java]
         viewModel.getData().observe(viewLifecycleOwner) { animals ->
             val adapter = CustomAdapter(animals) {
                 val ft = requireActivity().supportFragmentManager.beginTransaction()
@@ -39,13 +40,6 @@ class RecyclerviewFragment : Fragment() {
 
         return root
     }
-
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(RecyclerviewViewModel::class.java)
-//
-//    }
-
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.animalsapp.view
+package com.example.animalsapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,20 +11,17 @@ import retrofit2.Response
 
 
 class DetailsViewModel : ViewModel() {
-    //var details: MutableLiveData<String>? = null
 
     fun getDetails(id: String?): LiveData<AnimalDetails> {
         val mutableLiveData = MutableLiveData<AnimalDetails>()
         val apiInterface = ApiInterface.create().getFactsDetails(id)
-//        val apiInterface = id?.let { ApiInterface.create().getFactsDetails(it) }
+
         apiInterface.enqueue( object : Callback<AnimalDetails> {
-            override fun onResponse(call: Call<AnimalDetails>?, response: Response<AnimalDetails>?) {
-                if (response != null) {
-                    mutableLiveData.postValue(response.body())
-                }
+            override fun onResponse(call: Call<AnimalDetails>, response: Response<AnimalDetails>) {
+                mutableLiveData.postValue(response.body())
             }
 
-            override fun onFailure(call: Call<AnimalDetails>?, t: Throwable?) {
+            override fun onFailure(call: Call<AnimalDetails>, t: Throwable) {
 
             }
 
