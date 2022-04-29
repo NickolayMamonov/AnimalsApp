@@ -28,17 +28,13 @@ class RecyclerviewFragment : Fragment() {
         viewModel.getData().observe(viewLifecycleOwner) { animals ->
             val adapter = CustomAdapter(animals) {
                 val ft = requireActivity().supportFragmentManager.beginTransaction()
-                ft.replace(R.id.fragment_container, DetailsFragment())
+                ft.replace(R.id.fragment_container, DetailsFragment.newInstance(it))
                 ft.addToBackStack(null)
                 ft.commit()
             }
             val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerview)
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = adapter
-            val fragment = Fragment()
-            val bundle = Bundle()
-            bundle.putInt("id", id)
-            fragment.arguments = bundle
         }
 
         return root

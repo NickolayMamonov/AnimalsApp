@@ -16,7 +16,7 @@ class RecyclerviewViewModel : ViewModel() {
 
     fun getData(): LiveData<List<Animal>> {
         val mutableLiveData = MutableLiveData<List<Animal>>()
-        val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",100)
+        val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",25)
         apiInterface.enqueue( object : Callback<List<Animal>> {
             override fun onResponse(call: Call<List<Animal>>?, response: Response<List<Animal>>?) {
                 if (response != null) {

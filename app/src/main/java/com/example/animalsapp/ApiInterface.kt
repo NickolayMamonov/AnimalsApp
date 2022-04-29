@@ -15,7 +15,7 @@ interface ApiInterface {
     fun getAnimals(@Query ("animal_type") animal_type : String,
                    @Query ("amount") amount : Int) : Call<List<Animal>>
     @GET("facts/{id}")
-    fun getFactsDetails(@Path("id") id : String): Call<AnimalDetails>
+    fun getFactsDetails(@Path("id") id: String?): Call<AnimalDetails>
 
     companion object {
 

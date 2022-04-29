@@ -1,6 +1,5 @@
 package com.example.animalsapp.view
 
-import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,22 +11,24 @@ import retrofit2.Response
 
 
 class DetailsViewModel : ViewModel() {
-    var details: MutableLiveData<String>? = null
+    //var details: MutableLiveData<String>? = null
 
-    fun getDetails(): LiveData<List<AnimalDetails>> {
-        val mutableLiveData = MutableLiveData<List<AnimalDetails>>()
-//        val apiInterface = ApiInterface.create().getFactsDetails()
-        val apiInterface = bundle?.let { ApiInterface.create().getFactsDetails(it) }
-        apiInterface.enqueue( object : Callback<List<AnimalDetails>> {
-            override fun onResponse(call: Call<List<AnimalDetails>>?, response: Response<List<AnimalDetails>>?) {
+    fun getDetails(id: String?): LiveData<AnimalDetails> {
+        val mutableLiveData = MutableLiveData<AnimalDetails>()
+        val apiInterface = ApiInterface.create().getFactsDetails(id)
+//        val apiInterface = id?.let { ApiInterface.create().getFactsDetails(it) }
+        apiInterface.enqueue( object : Callback<AnimalDetails> {
+            override fun onResponse(call: Call<AnimalDetails>?, response: Response<AnimalDetails>?) {
                 if (response != null) {
                     mutableLiveData.postValue(response.body())
                 }
             }
 
-            override fun onFailure(call: Call<List<AnimalDetails>>?, t: Throwable?) {
+            override fun onFailure(call: Call<AnimalDetails>?, t: Throwable?) {
 
             }
+
+
 
         })
         return mutableLiveData
