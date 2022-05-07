@@ -1,33 +1,27 @@
 package com.example.animalsapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.animalsapp.ApiInterface
-import com.example.animalsapp.models.animaldetails.AnimalDetails
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.animalsapp.DetailsScreenState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 
 class DetailsViewModel : ViewModel() {
+    private val _dataState = MutableStateFlow<DetailsScreenState>(DetailsScreenState.Loading)
+    val dataState : StateFlow<DetailsScreenState> = _dataState
 
-    fun getDetails(id: String?): LiveData<AnimalDetails> {
-        val mutableLiveData = MutableLiveData<AnimalDetails>()
-        val apiInterface = ApiInterface.create().getFactsDetails(id)
-
-        apiInterface.enqueue( object : Callback<AnimalDetails> {
-            override fun onResponse(call: Call<AnimalDetails>, response: Response<AnimalDetails>) {
-                mutableLiveData.postValue(response.body())
+    fun getDetails(id: String?){
+        viewModelScope.launch {
+            try {
+                val apiInterface = ApiInterface.create().getFactsDetails(id)
+                _dataState.emit(DetailsScreenState.Content(apiInterface))
+            }catch (th: Throwable){
+                _dataState.emit(DetailsScreenState.Error(th))
             }
-
-            override fun onFailure(call: Call<AnimalDetails>, t: Throwable) {
-
-            }
-
-
-
-        })
-        return mutableLiveData
+        }
     }
+
 }

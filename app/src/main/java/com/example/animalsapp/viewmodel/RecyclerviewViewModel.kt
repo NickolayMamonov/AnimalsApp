@@ -4,30 +4,25 @@ import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.animalsapp.ApiInterface
-import com.example.animalsapp.CustomAdapter
-import com.example.animalsapp.models.animal.Animal
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.animalsapp.MainScreenState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
 
 class RecyclerviewViewModel : ViewModel() {
-//    var data: MutableLiveData<String>? = null
-
-    fun getData(): LiveData<List<Animal>> {
-        val mutableLiveData = MutableLiveData<List<Animal>>()
-        val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",25)
-        apiInterface.enqueue( object : Callback<List<Animal>> {
-            override fun onResponse(call: Call<List<Animal>>, response: Response<List<Animal>>) {
-                mutableLiveData.postValue(response.body())
+    private val _dataState = MutableStateFlow<MainScreenState>(MainScreenState.Loading)
+    val dataState : StateFlow<MainScreenState> = _dataState
+    init{
+        viewModelScope.launch {
+            try {
+                val apiInterface = ApiInterface.create().getAnimals("cat,dog,horse,snail",25)
+                _dataState.emit(MainScreenState.Content(apiInterface))
+            }catch (th: Throwable){
+                _dataState.emit(MainScreenState.Error(th))
             }
-
-            override fun onFailure(call: Call<List<Animal>>, t: Throwable) {
-
-            }
-
-        })
-        return mutableLiveData
+        }
     }
-
 }

@@ -12,10 +12,10 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @GET("facts/random")
-    fun getAnimals(@Query ("animal_type") animal_type : String,
-                   @Query ("amount") amount : Int) : Call<List<Animal>>
+    suspend fun getAnimals(@Query ("animal_type") animal_type : String,
+                           @Query ("amount") amount : Int) : List<Animal>
     @GET("facts/{id}")
-    fun getFactsDetails(@Path("id") id: String?): Call<AnimalDetails>
+    suspend fun getFactsDetails(@Path("id") id: String?): AnimalDetails
 
     companion object {
 
