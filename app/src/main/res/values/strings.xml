@@ -7,5 +7,12 @@
     <string name="fact_str">Факт :</string>
     <string name="details">Details</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">Подключение к интернету отсутствует или оно нестабильно</string>
+    <string name="test_firstname">Anatoly</string>
+    <string name="test_lastname">Panushkin</string>
+    <string name="test_timecreate">20.12.2022</string>
+    <string name="test_timeupdate">22.02.2022</string>
+    <string name="test_fact">fact</string>
+    <string name="image_descr">photo</string>
 
 </resources>

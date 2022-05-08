@@ -2,7 +2,6 @@ package com.example.animalsapp
 
 import com.example.animalsapp.models.animal.Animal
 import com.example.animalsapp.models.animaldetails.AnimalDetails
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

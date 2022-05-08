@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import com.example.animalsapp.DetailsScreenState
 import com.example.animalsapp.R
@@ -16,7 +17,6 @@ import com.example.animalsapp.viewmodel.DetailsViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.w3c.dom.Text
 
 class DetailsFragment : Fragment() {
 
@@ -46,6 +46,8 @@ class DetailsFragment : Fragment() {
                     progressbar.visibility= View.GONE
                     val errtext = root.findViewById<TextView>(R.id.error_text)
                     errtext.visibility= View.GONE
+                    val cardview = root.findViewById<CardView>(R.id.details_body_container_card)
+                    cardview.visibility = View.VISIBLE
                     val detailsFact = root.findViewById<TextView>(R.id.fact)
                     val createAt = root.findViewById<TextView>(R.id.time_create)
                     val updateAt = root.findViewById<TextView>(R.id.time_update)
@@ -70,6 +72,8 @@ class DetailsFragment : Fragment() {
                     progressbar.visibility= View.VISIBLE
                     val errtext = root.findViewById<TextView>(R.id.error_text)
                     errtext.visibility= View.INVISIBLE
+                    val cardview = root.findViewById<CardView>(R.id.details_body_container_card)
+                    cardview.visibility = View.INVISIBLE
                 }
             }
         }.launchIn(lifecycleScope)

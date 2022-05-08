@@ -9,7 +9,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:itemCount="5"
+        tools:itemCount="4"
         tools:listitem="@layout/recycler_view_design" />
     <ProgressBar
         android:id="@+id/progressBar"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="70dp"
-        android:text="Подключение к интернету отсутствует или оно нестабильно"
+        android:text="@string/error"
         android:textAlignment="center"
         android:layout_gravity="center"/>
 </FrameLayout>
